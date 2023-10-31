@@ -8,14 +8,8 @@ export const GlobalStyle = createGlobalStyle`
     }
 
     body {
-        background: ${(props) => props.theme.baseWhite};
-        color: ${(props) => props.theme.baseText};
-    }
-
-    body, input, textarea, button{
-        font-family: 'Roboto', sans-serif;
-        font-weight: 400;
-        font-size: 1rem
+        background: #333;
+        color: #fff;
     }
 
 `

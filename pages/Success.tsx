@@ -1,3 +1,3 @@
 export function Success() {
-  return <>Uhu! Pedido confirmado</>
+  return <>Success</>
 }
