@@ -5,12 +5,19 @@ export const ContainerHome = styled.div`
   justify-content: center;
   align-items: center;
   padding-top: 3rem;
-  div {
-    padding-right: 10rem;
-    h1 {
-      font-size: ${(props) => props.theme.textSizes['title-title-xl']};
-      font-family: ${(props) => props.theme.fonts.title};
-      font-weight: 800;
-    }
+  width: 100%;
+  height: auto;
+  img {
+    width: 50%;
+    max-width: 476px;
+    height: auto;
+  }
+`
+
+export const ContainerTextHome = styled.div`
+  h1 {
+    font-size: ${(props) => props.theme.textSizes['title-title-xl']};
+    font-family: ${(props) => props.theme.fonts.title};
+    font-weight: 800;
   }
 `
