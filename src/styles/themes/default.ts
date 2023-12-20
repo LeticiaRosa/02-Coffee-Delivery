@@ -1,4 +1,16 @@
-export const defaultTheme = {
+interface Theme {
+  cor: {
+    [key: string]: string
+  }
+  textSizes: {
+    [key: string]: string
+  }
+  fonts: {
+    [key: string]: string
+  }
+}
+
+export const defaultTheme: Theme = {
   cor: {
     baseWhite: '#FFFFFF',
     baseBackground: '#FAFAFA',
