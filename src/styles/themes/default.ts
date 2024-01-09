@@ -1,5 +1,5 @@
 interface Theme {
-  cor: {
+  color: {
     [key: string]: string
   }
   textSizes: {
@@ -11,7 +11,7 @@ interface Theme {
 }
 
 export const defaultTheme: Theme = {
-  cor: {
+  color: {
     baseWhite: '#FFFFFF',
     baseBackground: '#FAFAFA',
     baseCard: '#F3F2F2',

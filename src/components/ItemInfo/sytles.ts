@@ -8,7 +8,7 @@ export const Container = styled.div`
     display: flex;
     align-items: center;
     justify-content: center;
-    color: ${(props) => props.theme.cor.baseWhite};
+    color: ${(props) => props.theme.color.baseWhite};
     border-radius: 100%;
   }
   p {
@@ -27,6 +27,6 @@ export const Container = styled.div`
 export const ContainerIcon = styled.div<{ type: string; color: string }>`
   width: 32px;
   height: 32px;
-  background-color: ${(props) => props.theme.cor[props.color]}};
+  background-color: ${(props) => props.theme.color[props.color]}};
   
 `
