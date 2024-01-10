@@ -17,7 +17,7 @@ export function Header() {
           <MapPin size={22} weight="fill" />
           <p>Porto Alegre, RS</p>
         </div>
-        <IconCart />
+        <IconCart color="Orange" radios={6} />
       </nav>
     </HeaderContainer>
   )

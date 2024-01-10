@@ -50,6 +50,7 @@ export function Home() {
         </ContainerIntro>
         <img src={Imagem} alt="" />
       </ContainerHome>
+      <Title text="Nossos cafés" size="title-title-l" fonts="title" />
       <CoffeeList />
     </Container>
   )

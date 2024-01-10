@@ -1,6 +1,10 @@
 import styled from 'styled-components'
 
-export const Container = styled.div``
+export const Container = styled.div`
+  > p {
+    padding-bottom: 2rem;
+  }
+`
 
 export const ContainerHome = styled.div`
   display: flex;

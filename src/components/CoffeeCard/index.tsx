@@ -1,20 +1,44 @@
 import { Minus, Plus } from 'phosphor-react'
-import Coffee from '../../assets/Coffee/Coffee.svg'
 import { IconCart } from '../IconCart'
 import { Label } from '../Label'
 import { Title } from '../Title'
-import { BackgroundCard, Buy, Counter, Price } from './styles'
+import { BackgroundCard, Buy, ContainerTag, Counter, Price } from './styles'
+import { TagCoffee } from '../TagCoffee'
 
-export function CoffeeCard() {
+interface CoffeeProps {
+  tag: string[]
+  img: string
+  text: string
+  info: string
+  price: number
+  quantity: number
+}
+
+export function CoffeeCard({
+  tag,
+  img,
+  text,
+  info,
+  price,
+  quantity,
+}: CoffeeProps) {
   return (
     <BackgroundCard>
-      <div>
-        <img src={Coffee} alt="" />
-      </div>
-      <Title text="Expresso Tradicional" size="title-title-s" fonts="title" />
+      <img src={img} alt="" />
+      <ContainerTag>
+        {tag.map((elemento, index) => {
+          return (
+            <div key={index}>
+              <TagCoffee tag={elemento} />
+            </div>
+          )
+        })}
+      </ContainerTag>
+
+      <Title text={text} size="title-title-s" fonts="title" />
 
       <Label
-        text="O tradicional café feito com água quente e grãos moídos"
+        text={info}
         size="text-regular-s"
         fonts="regular"
         color="baseLabel"
@@ -24,23 +48,24 @@ export function CoffeeCard() {
           <Label
             color="baseText"
             fonts="regular"
-            size="text-regular-s"
+            size="text-regular-m"
             text="R$"
           />
-          <Title size="title-title-m" fonts="title" text="9,90" />
+          <Title size="title-title-m" fonts="title" text={price.toString()} />
         </Price>
 
         <Counter>
-          <Minus size={14} weight="bold" />
+          <Minus size={16} weight="bold" />
           <Label
             color="baseSubtitle"
             fonts="regular"
+            weight="bold"
             size="text-regular-m"
-            text="1"
+            text={quantity.toString()}
           />
-          <Plus size={14} weight="bold" />
+          <Plus size={16} weight="bold" />
         </Counter>
-        <IconCart />
+        <IconCart color="Purple" radios={6} />
       </Buy>
     </BackgroundCard>
   )
