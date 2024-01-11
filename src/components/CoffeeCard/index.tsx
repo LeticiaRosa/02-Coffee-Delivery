@@ -51,7 +51,14 @@ export function CoffeeCard({
             size="text-regular-m"
             text="R$"
           />
-          <Title size="title-title-m" fonts="title" text={price.toString()} />
+          <Title
+            size="title-title-m"
+            fonts="title"
+            text={(price / 100).toLocaleString('pt-BR', {
+              minimumFractionDigits: 2,
+              maximumFractionDigits: 2,
+            })}
+          />
         </Price>
 
         <Counter>

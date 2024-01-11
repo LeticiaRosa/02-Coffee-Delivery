@@ -19,4 +19,11 @@ export const HeaderContainer = styled.a<{ color: string; radios: number }>`
     border-top: 3px solid transparent;
     border-bottom: 3px solid transparent;
   }
+
+  :hover {
+    background-color: ${(props) =>
+      props.color === 'Orange'
+        ? props.theme.color.brandYellow
+        : props.theme.color.brandPurple};
+  }
 `

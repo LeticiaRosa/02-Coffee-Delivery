@@ -53,4 +53,8 @@ export const Counter = styled.div`
   color: ${(props) => props.theme.color.brandPurple};
   background-color: ${(props) => props.theme.color.baseButton};
   border-radius: 10%;
+  :hover {
+    color: ${(props) => props.theme.color.brandPurpleDark};
+    cursor: pointer;
+  }
 `
