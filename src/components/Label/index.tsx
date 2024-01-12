@@ -1,8 +1,14 @@
+/* eslint-disable prettier/prettier */
 import { TextProps, TextSize } from './styles'
 
 export interface LabelProps extends TextProps {
   text: string
-  color: 'baseLabel' | 'baseText' | 'baseSubtitle' | 'brandPurple'
+  color:
+  | 'baseWhite'
+  | 'baseLabel'
+  | 'baseText'
+  | 'baseSubtitle'
+  | 'brandPurple'
   weight?: 'bold' | 'normal'
 }
 

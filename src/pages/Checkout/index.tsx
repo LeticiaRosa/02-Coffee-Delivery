@@ -1,43 +1,41 @@
-import { MapPinLine } from 'phosphor-react'
-import { Input } from '../../components/Form/Input'
-import { Label } from '../../components/Label'
 import { Title } from '../../components/Title'
-import { Container, ContainerForm, ContainerInputs, HeaderForm } from './styles'
+import {
+  Container,
+  ContainerAddress,
+  ContainerCart,
+  ContainerPayment,
+  ContainerMenu,
+} from './styles'
+import { CardAddress } from '../../components/CardAddress'
+import { CardCart } from '../../components/CardSelectedCoffes/CardCart'
 
 export function Checkout() {
   return (
     <Container>
-      <Title text="Complete seu pedido" fonts="title" size="title-title-s" />
-
-      <ContainerForm>
-        <form action="">
-          <HeaderForm>
-            <MapPinLine size={32} />
-            <Label
-              text="Endereço de Entrega"
-              size="text-regular-m"
-              fonts="regular"
-              color="baseText"
+      <ContainerAddress>
+        <ContainerMenu>
+          <div>
+            <Title
+              text="Complete seu pedido"
+              fonts="title"
+              size="title-title-s"
             />
-            <Label
-              text="Informe o endereço onde deseja receber seu pedido"
-              size="text-regular-s"
-              fonts="regular"
-              color="baseText"
-            />
-          </HeaderForm>
+            <CardAddress />
+          </div>
+          <div>
+            <ContainerPayment>
+              <p>teste</p>
+            </ContainerPayment>
+          </div>
+        </ContainerMenu>
 
-          <ContainerInputs>
-            <Input placeholder="CEP" />
-            <Input placeholder="Rua" optional="Opcional" />
-            <Input placeholder="Número" />
-            <Input placeholder="Complemento" />
-            <Input placeholder="Bairro" />
-            <Input placeholder="Cidade" />
-            <Input placeholder="UF" />
-          </ContainerInputs>
-        </form>
-      </ContainerForm>
+        <ContainerMenu>
+          <Title text="Cafés selecionados" fonts="title" size="title-title-s" />
+          <ContainerCart>
+            <CardCart />
+          </ContainerCart>
+        </ContainerMenu>
+      </ContainerAddress>
     </Container>
   )
 }

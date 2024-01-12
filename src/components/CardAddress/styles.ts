@@ -1,24 +1,5 @@
 import styled from 'styled-components'
 
-export const Container = styled.div`
-  height: auto;
-  padding: 2rem;
-  width: 100%;
-`
-export const ContainerAddress = styled.div`
-  display: flex;
-  padding: 1rem 0;
-  gap: 1rem;
-`
-
-export const ContainerMenu = styled.div`
-  margin: 0;
-  display: inline;
-  div {
-    padding-bottom: 1rem;
-  }
-`
-
 export const HeaderForm = styled.div`
   display: grid;
   align-items: center;
@@ -39,7 +20,19 @@ export const HeaderForm = styled.div`
     grid-column: 2 / span 6;
   }
 `
-
+export const ContainerAddress = styled.div`
+  display: flex;
+  padding: 2rem 0;
+  width: 100%;
+  height: auto;
+`
+export const ContainerAdress = styled.div`
+  display: inline-block;
+  width: 100%;
+  background-color: ${(props) => props.theme.color.baseCard};
+  padding: 2.5rem;
+  border-radius: 10px;
+`
 export const ContainerInputs = styled.div`
   display: grid;
   grid-template-rows: repeat(4, 1fr);
@@ -89,15 +82,7 @@ export const ContainerInputs = styled.div`
 
 export const ContainerCart = styled.div`
   display: inline-block;
-  width: 100%;
-  background-color: ${(props) => props.theme.color.baseCard};
-  padding: 1rem 2.5rem;
-  border-radius: 10px 40px;
-`
-
-export const ContainerPayment = styled.div`
-  display: inline-block;
-  width: 100%;
+  width: 30%;
   background-color: ${(props) => props.theme.color.baseCard};
   padding: 2.5rem;
   border-radius: 10px 40px;

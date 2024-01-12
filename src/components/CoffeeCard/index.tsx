@@ -1,9 +1,9 @@
-import { Minus, Plus } from 'phosphor-react'
 import { IconCart } from '../IconCart'
 import { Label } from '../Label'
 import { Title } from '../Title'
-import { BackgroundCard, Buy, ContainerTag, Counter, Price } from './styles'
+import { BackgroundCard, Buy, ContainerTag, Price } from './styles'
 import { TagCoffee } from '../TagCoffee'
+import { Counter } from '../../components/Counter/index'
 
 interface CoffeeProps {
   tag: string[]
@@ -60,18 +60,8 @@ export function CoffeeCard({
             })}
           />
         </Price>
+        <Counter qtd={quantity} />
 
-        <Counter>
-          <Minus size={16} weight="bold" />
-          <Label
-            color="baseSubtitle"
-            fonts="regular"
-            weight="bold"
-            size="text-regular-m"
-            text={quantity.toString()}
-          />
-          <Plus size={16} weight="bold" />
-        </Counter>
         <IconCart color="Purple" radios={6} />
       </Buy>
     </BackgroundCard>
