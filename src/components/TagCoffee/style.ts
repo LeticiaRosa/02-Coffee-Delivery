@@ -1,6 +1,6 @@
 import { styled } from 'styled-components'
 
-export const Tag = styled.a`
+export const Tag = styled.span`
   display: flex;
   text-transform: uppercase;
   background-color: ${(props) => props.theme.color.brandYellowLight};

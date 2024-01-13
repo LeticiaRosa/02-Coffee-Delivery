@@ -1,3 +1,4 @@
+import { StyleSheetManager } from 'styled-components'
 import { TextProps, TextSize } from './styles'
 
 export interface TitleProps extends TextProps {
@@ -6,8 +7,10 @@ export interface TitleProps extends TextProps {
 
 export function Title({ text, size, fonts }: TitleProps) {
   return (
-    <TextSize size={size} fonts={fonts}>
-      {text}
-    </TextSize>
+    <StyleSheetManager shouldForwardProp={() => true}>
+      <TextSize size={size} fonts={fonts}>
+        {text}
+      </TextSize>
+    </StyleSheetManager>
   )
 }

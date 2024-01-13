@@ -1,9 +1,14 @@
 import styled from 'styled-components'
 
-export const HeaderContainer = styled.a<{ color: string; radios: number }>`
-  a {
-    width: 2.5rem;
-    height: 2.5rem;
+export const HeaderContainer = styled.div<{
+  color: string
+  radios: number
+}>`
+  display: flex;
+  > div {
+    cursor: pointer;
+    width: 2.4rem;
+    height: 2.4rem;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -19,8 +24,7 @@ export const HeaderContainer = styled.a<{ color: string; radios: number }>`
     border-top: 3px solid transparent;
     border-bottom: 3px solid transparent;
   }
-
-  :hover {
+  div:hover {
     background-color: ${(props) =>
       props.color === 'Orange'
         ? props.theme.color.brandYellow

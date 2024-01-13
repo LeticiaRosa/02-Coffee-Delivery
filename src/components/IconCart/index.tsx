@@ -1,6 +1,6 @@
-import { NavLink } from 'react-router-dom'
 import { ShoppingCart } from 'phosphor-react'
 import { HeaderContainer } from './styles'
+import { StyleSheetManager } from 'styled-components'
 
 export type ColorProps = {
   color: 'Orange' | 'Purple'
@@ -9,10 +9,12 @@ export type ColorProps = {
 
 export function IconCart({ color, radios }: ColorProps) {
   return (
-    <HeaderContainer color={color} radios={radios}>
-      <NavLink to="/Checkout" title="Carrinho">
-        <ShoppingCart size={22} weight="fill" />
-      </NavLink>
-    </HeaderContainer>
+    <StyleSheetManager shouldForwardProp={() => true}>
+      <HeaderContainer color={color} radios={radios}>
+        <div>
+          <ShoppingCart size={22} weight="fill" />
+        </div>
+      </HeaderContainer>
+    </StyleSheetManager>
   )
 }

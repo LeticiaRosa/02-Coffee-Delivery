@@ -1,4 +1,5 @@
 /* eslint-disable prettier/prettier */
+import { StyleSheetManager } from 'styled-components'
 import { TextProps, TextSize } from './styles'
 
 export interface LabelProps extends TextProps {
@@ -14,8 +15,11 @@ export interface LabelProps extends TextProps {
 
 export function Label({ text, size, fonts, color, weight }: LabelProps) {
   return (
-    <TextSize size={size} fonts={fonts} color={color} weight={weight}>
-      {text}
-    </TextSize>
+    <StyleSheetManager shouldForwardProp={() => true
+    }>
+      <TextSize size={size} fonts={fonts} color={color} weight={weight}>
+        {text}
+      </TextSize>
+    </StyleSheetManager >
   )
 }

@@ -13,9 +13,6 @@ export const ContainerInfos = styled.div`
   }
 `
 export const ContainerButton = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: center;
   padding: 1rem 0;
   button {
     padding: 1rem;

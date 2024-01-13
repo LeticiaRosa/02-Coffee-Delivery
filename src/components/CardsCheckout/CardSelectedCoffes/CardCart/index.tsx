@@ -3,6 +3,7 @@ import { ContainerButton, ContainerInfos, ContainerMenu } from './styles'
 import { Card } from './Card'
 
 import { Label } from '../../../Label'
+import { NavLink } from 'react-router-dom'
 
 export function CardCart() {
   return (
@@ -57,15 +58,17 @@ export function CardCart() {
         </div>
       </ContainerInfos>
       <ContainerButton>
-        <button>
-          <Label
-            text="CONFIRMAR PEDIDO"
-            fonts="regular"
-            color="baseWhite"
-            size="components-button-g"
-            weight="bold"
-          />
-        </button>
+        <NavLink to="/Success" title="Success">
+          <button>
+            <Label
+              text="CONFIRMAR PEDIDO"
+              fonts="regular"
+              color="baseWhite"
+              size="components-button-g"
+              weight="bold"
+            />
+          </button>
+        </NavLink>
       </ContainerButton>
     </ContainerMenu>
   )
