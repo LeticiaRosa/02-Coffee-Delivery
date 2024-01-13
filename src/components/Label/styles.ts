@@ -9,6 +9,7 @@ export interface TextProps {
     | 'text-regular-s'
     | 'text-bold-s'
     | 'components-button-g'
+    | 'components-button-s'
   fonts: 'regular'
 }
 

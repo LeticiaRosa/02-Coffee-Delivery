@@ -1,8 +1,8 @@
 import { ContainerButton, ContainerInfos, ContainerMenu } from './styles'
 
-import { Card } from '../../../components/CardSelectedCoffes/CardCart/Card'
+import { Card } from './Card'
 
-import { Label } from '../../Label'
+import { Label } from '../../../Label'
 
 export function CardCart() {
   return (

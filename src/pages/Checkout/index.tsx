@@ -3,11 +3,11 @@ import {
   Container,
   ContainerAddress,
   ContainerCart,
-  ContainerPayment,
   ContainerMenu,
 } from './styles'
-import { CardAddress } from '../../components/CardAddress'
-import { CardCart } from '../../components/CardSelectedCoffes/CardCart'
+import { CardAddress } from '../../components/CardsCheckout/CardAddress'
+import { CardCart } from '../../components/CardsCheckout/CardSelectedCoffes/CardCart'
+import { CardFormOfPayment } from '../../components/CardsCheckout/CardPaymentForm'
 
 export function Checkout() {
   return (
@@ -23,9 +23,7 @@ export function Checkout() {
             <CardAddress />
           </div>
           <div>
-            <ContainerPayment>
-              <p>teste</p>
-            </ContainerPayment>
+            <CardFormOfPayment />
           </div>
         </ContainerMenu>
 

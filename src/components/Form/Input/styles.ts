@@ -27,6 +27,7 @@ export const Container = styled.div`
     + span {
       display: none;
     }
+    color: ${(props) => props.theme.color.baseText};
   }
   input:focus::placeholder {
     opacity: 0;

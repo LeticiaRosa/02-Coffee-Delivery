@@ -1,25 +1,27 @@
 import { MapPinLine } from 'phosphor-react'
-import { Input } from '../../components/Form/Input'
-import { Label } from '../Label/index'
+import { Input } from '../../Form/Input'
+import { Label } from '../../Label/index'
 import { ContainerAdress, ContainerInputs, HeaderForm } from './styles'
 
 export function CardAddress() {
   return (
     <ContainerAdress>
       <HeaderForm>
-        <MapPinLine size={32} />
-        <Label
-          text="Endereço de Entrega"
-          size="text-regular-m"
-          fonts="regular"
-          color="baseText"
-        />
-        <Label
-          text="Informe o endereço onde deseja receber seu pedido"
-          size="text-regular-s"
-          fonts="regular"
-          color="baseText"
-        />
+        <MapPinLine size={22} />
+        <div>
+          <Label
+            text="Endereço de Entrega"
+            size="text-regular-m"
+            fonts="regular"
+            color="baseText"
+          />
+          <Label
+            text="Informe o endereço onde deseja receber seu pedido"
+            size="text-regular-s"
+            fonts="regular"
+            color="baseText"
+          />
+        </div>
       </HeaderForm>
       <form action="">
         <ContainerInputs>

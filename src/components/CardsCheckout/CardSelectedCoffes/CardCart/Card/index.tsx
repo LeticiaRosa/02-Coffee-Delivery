@@ -1,7 +1,8 @@
-import { Label } from '../../../Label'
-import { BackgroundCard, Buy, Price } from './styles'
-import expressoTradicional from '../../../../assets/Coffees/expresso-tradicional.png'
-import { Counter } from '../../../Counter'
+import { Label } from '../../../../Label'
+import { BackgroundCard, Buy, ContainerButtons, Price } from './styles'
+import expressoTradicional from '../../../../../assets/Coffees/expresso-tradicional.png'
+import { Counter } from '../../../../Counter'
+import { RemoveButton } from '../../../../RemoveButton'
 
 export function Card() {
   return (
@@ -14,7 +15,10 @@ export function Card() {
           size="text-regular-m"
           text="Expresso Tradicional"
         />
-        <Counter qtd={1} />
+        <ContainerButtons>
+          <Counter qtd={1} />
+          <RemoveButton />
+        </ContainerButtons>
       </Buy>
       <Price>
         <Label color="baseText" fonts="regular" size="text-bold-m" text="R$" />

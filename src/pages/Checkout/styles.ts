@@ -4,17 +4,23 @@ export const Container = styled.div`
   height: auto;
   padding: 2rem;
   width: 100%;
+  @media screen and (max-width: 500px) {
+    padding: 1rem;
+  }
 `
 export const ContainerAddress = styled.div`
   display: flex;
   padding: 1rem 0;
   gap: 1rem;
+  @media screen and (max-width: 1200px) {
+    display: inline;
+  }
 `
 
 export const ContainerMenu = styled.div`
   margin: 0;
   display: inline;
-  div {
+  > div {
     padding-bottom: 1rem;
   }
 `
@@ -93,12 +99,7 @@ export const ContainerCart = styled.div`
   background-color: ${(props) => props.theme.color.baseCard};
   padding: 1rem 2.5rem;
   border-radius: 10px 40px;
-`
-
-export const ContainerPayment = styled.div`
-  display: inline-block;
-  width: 100%;
-  background-color: ${(props) => props.theme.color.baseCard};
-  padding: 2.5rem;
-  border-radius: 10px 40px;
+  @media screen and (max-width: 500px) {
+    padding: 1rem;
+  }
 `
