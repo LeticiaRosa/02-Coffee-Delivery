@@ -1,7 +1,5 @@
 import { ContainerButton, ContainerInfos, ContainerMenu } from './styles'
-
 import { Card } from './Card'
-
 import { Label } from '../../../Label'
 import { NavLink } from 'react-router-dom'
 import { useCart } from '../../../../Context/CartContext'
@@ -10,13 +8,14 @@ export function CardCart() {
   const { coffeeListType } = useCart()
   return (
     <ContainerMenu>
-      {/* fazer map para construir o card */}
-
       {coffeeListType.map((i) => {
-        return <p key={i.idCoffeeCart}>{i.idCoffeeCart}</p>
+        return (
+          <div key={i.idCoffeeCart}>
+            <Card id={i.idCoffeeCart} qtd={i.qtdCoffeCart} />
+          </div>
+        )
       })}
 
-      <Card />
       <ContainerInfos>
         <div>
           <Label

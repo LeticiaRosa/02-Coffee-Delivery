@@ -23,12 +23,12 @@ export function CoffeeCard({ id, tag, img, text, info, price }: CoffeeProps) {
 
   function handleAddCart() {
     setResetCounter(true)
+    setQtdCoffees(1)
     addToCart({
       idCoffeeCart: id,
       qtdCoffeCart: qtdCoffees,
     })
   }
-
   return (
     <BackgroundCard>
       <img src={img} alt="" />
@@ -67,7 +67,12 @@ export function CoffeeCard({ id, tag, img, text, info, price }: CoffeeProps) {
             })}
           />
         </Price>
-        <Counter setQtdCoffees={setQtdCoffees} resetCounter={resetCounter} />
+        <Counter
+          qtdInicial={qtdCoffees}
+          setQtdCoffees={setQtdCoffees}
+          resetCounter={resetCounter}
+          setResetCounter={setResetCounter}
+        />
         <IconCart color="Purple" radios={6} onClick={handleAddCart} />
       </Buy>
     </BackgroundCard>

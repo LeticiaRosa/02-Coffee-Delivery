@@ -1,28 +1,45 @@
 import { Label } from '../../../../Label'
 import { BackgroundCard, Buy, ContainerButtons, Price } from './styles'
-import expressoTradicional from '../../../../../assets/Coffees/expresso-tradicional.png'
 import { Counter } from '../../../../Counter'
 import { RemoveButton } from '../../../../RemoveButton'
 import { useEffect, useState } from 'react'
+import { coffees } from '../../../../../api'
+// import { useCart } from '../../../../../Context/CartContext'
 
-export function Card() {
-  const [qtdCoffees, setQtdCoffees] = useState(1)
+interface CardProps {
+  id: string
+  qtd: number
+}
+
+export function Card({ id, qtd }: CardProps) {
+  const [qtdCoffees, setQtdCoffees] = useState(qtd)
+  // const { addToCart } = useCart()
   useEffect(() => {
-    console.log('Adicionar diretamente no carrinho' || qtdCoffees)
+    console.log('Entrou aqui')
+    // addToCart({ idCoffeeCart: id, qtdCoffeCart: qtdCoffees })
   }, [qtdCoffees])
 
+  function returnCoffee() {
+    const found = coffees.find((element) => element.id === id)
+    return found
+  }
   return (
     <BackgroundCard>
-      <img src={expressoTradicional} alt="" />
+      <img src={returnCoffee()?.image} alt="" />
+
       <Buy>
         <Label
           color="baseText"
           fonts="regular"
           size="text-regular-m"
-          text="Expresso Tradicional"
+          text={returnCoffee()?.name}
         />
         <ContainerButtons>
-          <Counter setQtdCoffees={setQtdCoffees} resetCounter={false} />
+          <Counter
+            qtdInicial={qtd}
+            setQtdCoffees={setQtdCoffees}
+            resetCounter={false}
+          />
           <RemoveButton />
         </ContainerButtons>
       </Buy>

@@ -15,12 +15,28 @@ export function CartContextProvider({ children }: { children: ReactNode }) {
   const [coffeeListType, setCoffeeListType] = useState<CoffeeListType[]>([])
 
   function addToCart(item: CoffeeListType) {
-    const itemCart = {
+    const foundIndex = coffeeListType.findIndex(
+      (element) => element.idCoffeeCart === item.idCoffeeCart,
+    )
+    let itemCart = {
       idCoffeeCart: item.idCoffeeCart,
       qtdCoffeCart: item.qtdCoffeCart,
     }
-
-    setCoffeeListType((prev) => [...prev, itemCart])
+    if (foundIndex < 0) {
+      setCoffeeListType((prev) => [...prev, itemCart])
+    } else {
+      const foundQtd = coffeeListType.find(
+        (element) => element.idCoffeeCart === item.idCoffeeCart,
+      )
+      itemCart = {
+        idCoffeeCart: item.idCoffeeCart,
+        qtdCoffeCart:
+          item.qtdCoffeCart + (foundQtd ? foundQtd?.qtdCoffeCart : 0),
+      }
+      const arrayOld = coffeeListType
+      arrayOld.splice(foundIndex, 1, itemCart)
+      setCoffeeListType(arrayOld)
+    }
   }
   function removeToCart(id: CoffeeListType) {
     console.log(id)

@@ -4,22 +4,33 @@ import { ContainerCounter } from './styles'
 import { useState } from 'react'
 
 interface CounterProps {
+  qtdInicial: number
   setQtdCoffees: (id: number) => void
   resetCounter: boolean
+  setResetCounter: (id: boolean) => void
 }
 
-export function Counter({ setQtdCoffees, resetCounter }: CounterProps) {
-  const [qtd, setQtd] = useState(1)
+export function Counter({
+  qtdInicial,
+  setQtdCoffees,
+  resetCounter,
+  setResetCounter,
+}: CounterProps) {
+  const [qtd, setQtd] = useState(qtdInicial)
 
   function handleAddQtd() {
     const newQtd = qtd + 1
-    setQtd(newQtd)
-    setQtdCoffees(newQtd)
+    updateState(newQtd)
   }
   function handleMinQtd() {
     const newQtd = qtd <= 1 ? 1 : qtd - 1
+    updateState(newQtd)
+  }
+
+  function updateState(newQtd: number) {
     setQtd(newQtd)
     setQtdCoffees(newQtd)
+    setResetCounter(false)
   }
 
   return (

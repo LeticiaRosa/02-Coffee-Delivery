@@ -3,7 +3,7 @@ import { StyleSheetManager } from 'styled-components'
 import { TextProps, TextSize } from './styles'
 
 export interface LabelProps extends TextProps {
-  text: string
+  text: string | undefined
   color:
   | 'baseWhite'
   | 'baseLabel'
