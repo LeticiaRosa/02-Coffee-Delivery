@@ -4,11 +4,18 @@ import { Card } from './Card'
 
 import { Label } from '../../../Label'
 import { NavLink } from 'react-router-dom'
+import { useCart } from '../../../../Context/CartContext'
 
 export function CardCart() {
+  const { coffeeListType } = useCart()
   return (
     <ContainerMenu>
-      <Card />
+      {/* fazer map para construir o card */}
+
+      {coffeeListType.map((i) => {
+        return <p key={i.idCoffeeCart}>{i.idCoffeeCart}</p>
+      })}
+
       <Card />
       <ContainerInfos>
         <div>

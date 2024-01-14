@@ -9,12 +9,12 @@ export function CoffeeList() {
         return (
           <CoffeeCard
             key={props.id}
+            id={props.id}
             tag={props.tags}
             text={props.name}
             info={props.description}
             price={props.price}
             img={props.image}
-            quantity={props.quantity}
           />
         )
       })}

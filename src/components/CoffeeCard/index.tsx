@@ -4,24 +4,31 @@ import { Title } from '../Title'
 import { BackgroundCard, Buy, ContainerTag, Price } from './styles'
 import { TagCoffee } from '../TagCoffee'
 import { Counter } from '../../components/Counter/index'
+import { useState } from 'react'
+import { useCart } from '../../Context/CartContext'
 
 interface CoffeeProps {
+  id: string
   tag: string[]
   img: string
   text: string
   info: string
   price: number
-  quantity: number
 }
 
-export function CoffeeCard({
-  tag,
-  img,
-  text,
-  info,
-  price,
-  quantity,
-}: CoffeeProps) {
+export function CoffeeCard({ id, tag, img, text, info, price }: CoffeeProps) {
+  const { addToCart } = useCart()
+  const [qtdCoffees, setQtdCoffees] = useState(1)
+  const [resetCounter, setResetCounter] = useState(false)
+
+  function handleAddCart() {
+    setResetCounter(true)
+    addToCart({
+      idCoffeeCart: id,
+      qtdCoffeCart: qtdCoffees,
+    })
+  }
+
   return (
     <BackgroundCard>
       <img src={img} alt="" />
@@ -60,9 +67,8 @@ export function CoffeeCard({
             })}
           />
         </Price>
-        <Counter qtd={quantity} />
-
-        <IconCart color="Purple" radios={6} />
+        <Counter setQtdCoffees={setQtdCoffees} resetCounter={resetCounter} />
+        <IconCart color="Purple" radios={6} onClick={handleAddCart} />
       </Buy>
     </BackgroundCard>
   )

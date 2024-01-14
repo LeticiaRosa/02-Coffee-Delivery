@@ -8,6 +8,7 @@ import {
 import { ItemInfo } from '../../components/ItemInfo'
 import { Title } from '../../components/Title'
 import { CoffeeList } from '../../components/CoffeeList'
+
 export function Home() {
   return (
     <Container>

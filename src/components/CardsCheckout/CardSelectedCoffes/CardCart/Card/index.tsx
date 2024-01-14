@@ -3,8 +3,14 @@ import { BackgroundCard, Buy, ContainerButtons, Price } from './styles'
 import expressoTradicional from '../../../../../assets/Coffees/expresso-tradicional.png'
 import { Counter } from '../../../../Counter'
 import { RemoveButton } from '../../../../RemoveButton'
+import { useEffect, useState } from 'react'
 
 export function Card() {
+  const [qtdCoffees, setQtdCoffees] = useState(1)
+  useEffect(() => {
+    console.log('Adicionar diretamente no carrinho' || qtdCoffees)
+  }, [qtdCoffees])
+
   return (
     <BackgroundCard>
       <img src={expressoTradicional} alt="" />
@@ -16,7 +22,7 @@ export function Card() {
           text="Expresso Tradicional"
         />
         <ContainerButtons>
-          <Counter qtd={1} />
+          <Counter setQtdCoffees={setQtdCoffees} resetCounter={false} />
           <RemoveButton />
         </ContainerButtons>
       </Buy>
@@ -26,7 +32,7 @@ export function Card() {
           color="baseText"
           fonts="regular"
           size="text-bold-m"
-          text={(990 / 100).toLocaleString('pt-BR', {
+          text={((990 / 100) * qtdCoffees).toLocaleString('pt-BR', {
             minimumFractionDigits: 2,
             maximumFractionDigits: 2,
           })}
