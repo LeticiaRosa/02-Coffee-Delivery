@@ -19,15 +19,13 @@ interface CoffeeProps {
 export function CoffeeCard({ id, tag, img, text, info, price }: CoffeeProps) {
   const { addToCart } = useCart()
   const [qtdCoffees, setQtdCoffees] = useState(1)
-  const [resetCounter, setResetCounter] = useState(false)
 
   function handleAddCart() {
-    setResetCounter(true)
-    setQtdCoffees(1)
     addToCart({
       idCoffeeCart: id,
       qtdCoffeCart: qtdCoffees,
     })
+    setQtdCoffees(1)
   }
   return (
     <BackgroundCard>
@@ -67,12 +65,7 @@ export function CoffeeCard({ id, tag, img, text, info, price }: CoffeeProps) {
             })}
           />
         </Price>
-        <Counter
-          qtdInicial={qtdCoffees}
-          setQtdCoffees={setQtdCoffees}
-          resetCounter={resetCounter}
-          setResetCounter={setResetCounter}
-        />
+        <Counter qtdCoffees={qtdCoffees} setQtdCoffees={setQtdCoffees} />
         <IconCart color="Purple" radios={6} onClick={handleAddCart} />
       </Buy>
     </BackgroundCard>

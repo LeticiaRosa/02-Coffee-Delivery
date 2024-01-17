@@ -2,8 +2,9 @@ import { Label } from '../../../../Label'
 import { BackgroundCard, Buy, ContainerButtons, Price } from './styles'
 import { Counter } from '../../../../Counter'
 import { RemoveButton } from '../../../../RemoveButton'
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import { coffees } from '../../../../../api'
+// import { useCart } from '../../../../../Context/CartContext'
 // import { useCart } from '../../../../../Context/CartContext'
 
 interface CardProps {
@@ -12,12 +13,12 @@ interface CardProps {
 }
 
 export function Card({ id, qtd }: CardProps) {
+  // const { coffeeListType, addToCart } = useCart()
   const [qtdCoffees, setQtdCoffees] = useState(qtd)
   // const { addToCart } = useCart()
-  useEffect(() => {
-    console.log('Entrou aqui')
-    // addToCart({ idCoffeeCart: id, qtdCoffeCart: qtdCoffees })
-  }, [qtdCoffees])
+  // useEffect(() => {
+  //   addToCart({ idCoffeeCart: id, qtdCoffeCart: qtdCoffees })
+  // }, [qtdCoffees])
 
   function returnCoffee() {
     const found = coffees.find((element) => element.id === id)
@@ -35,11 +36,7 @@ export function Card({ id, qtd }: CardProps) {
           text={returnCoffee()?.name}
         />
         <ContainerButtons>
-          <Counter
-            qtdInicial={qtd}
-            setQtdCoffees={setQtdCoffees}
-            resetCounter={false}
-          />
+          <Counter qtdCoffees={qtdCoffees} setQtdCoffees={setQtdCoffees} />
           <RemoveButton />
         </ContainerButtons>
       </Buy>

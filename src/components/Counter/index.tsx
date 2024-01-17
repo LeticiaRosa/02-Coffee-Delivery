@@ -1,36 +1,19 @@
 import { Minus, Plus } from 'phosphor-react'
 import { Label } from '../Label'
 import { ContainerCounter } from './styles'
-import { useState } from 'react'
 
 interface CounterProps {
-  qtdInicial: number
-  setQtdCoffees: (id: number) => void
-  resetCounter: boolean
-  setResetCounter: (id: boolean) => void
+  qtdCoffees: number
+  setQtdCoffees: (qtd: number) => void
 }
 
-export function Counter({
-  qtdInicial,
-  setQtdCoffees,
-  resetCounter,
-  setResetCounter,
-}: CounterProps) {
-  const [qtd, setQtd] = useState(qtdInicial)
-
+export function Counter({ qtdCoffees, setQtdCoffees }: CounterProps) {
   function handleAddQtd() {
-    const newQtd = qtd + 1
-    updateState(newQtd)
+    setQtdCoffees(++qtdCoffees)
   }
   function handleMinQtd() {
-    const newQtd = qtd <= 1 ? 1 : qtd - 1
-    updateState(newQtd)
-  }
-
-  function updateState(newQtd: number) {
-    setQtd(newQtd)
-    setQtdCoffees(newQtd)
-    setResetCounter(false)
+    if (qtdCoffees <= 1) return
+    setQtdCoffees(--qtdCoffees)
   }
 
   return (
@@ -41,7 +24,7 @@ export function Counter({
         fonts="regular"
         weight="bold"
         size="text-regular-m"
-        text={resetCounter ? '1' : qtd.toString()}
+        text={qtdCoffees.toString()}
       />
       <Plus size={16} weight="bold" onClick={handleAddQtd} />
     </ContainerCounter>
