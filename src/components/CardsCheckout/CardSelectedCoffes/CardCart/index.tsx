@@ -1,4 +1,9 @@
-import { ContainerButton, ContainerInfos, ContainerMenu } from './styles'
+import {
+  ContainerButton,
+  ContainerInfos,
+  ContainerMenu,
+  ContainerCoffees,
+} from './styles'
 import { Card } from './Card'
 import { Label } from '../../../Label'
 import { NavLink } from 'react-router-dom'
@@ -8,13 +13,15 @@ export function CardCart() {
   const { coffeeListType } = useCart()
   return (
     <ContainerMenu>
-      {coffeeListType.map((i) => {
-        return (
-          <div key={i.idCoffeeCart}>
-            <Card id={i.idCoffeeCart} qtd={i.qtdCoffeCart} />
-          </div>
-        )
-      })}
+      <ContainerCoffees>
+        {coffeeListType.map((i) => {
+          return (
+            <div key={i.idCoffeeCart}>
+              <Card id={i.idCoffeeCart} qtd={i.qtdCoffeCart} />
+            </div>
+          )
+        })}
+      </ContainerCoffees>
 
       <ContainerInfos>
         <div>
