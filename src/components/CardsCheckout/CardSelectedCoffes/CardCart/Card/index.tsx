@@ -4,6 +4,7 @@ import { Counter } from '../../../../Counter'
 import { RemoveButton } from '../../../../RemoveButton'
 import { useState } from 'react'
 import { coffees } from '../../../../../api'
+import { useCart } from '../../../../../Context/CartContext'
 // import { useCart } from '../../../../../Context/CartContext'
 // import { useCart } from '../../../../../Context/CartContext'
 
@@ -13,12 +14,16 @@ interface CardProps {
 }
 
 export function Card({ id, qtd }: CardProps) {
-  // const { coffeeListType, addToCart } = useCart()
   const [qtdCoffees, setQtdCoffees] = useState(qtd)
-  // const { addToCart } = useCart()
-  // useEffect(() => {
-  //   addToCart({ idCoffeeCart: id, qtdCoffeCart: qtdCoffees })
-  // }, [qtdCoffees])
+  const { updatedToCart, removeToCart } = useCart()
+  function handleAddToCard(qtd: number) {
+    setQtdCoffees(qtd)
+    updatedToCart({ idCoffeeCart: id, qtdCoffeCart: qtd })
+  }
+
+  function handleRemoveToCard() {
+    removeToCart(id)
+  }
 
   function returnCoffee() {
     const found = coffees.find((element) => element.id === id)
@@ -36,8 +41,8 @@ export function Card({ id, qtd }: CardProps) {
           text={returnCoffee()?.name}
         />
         <ContainerButtons>
-          <Counter qtdCoffees={qtdCoffees} setQtdCoffees={setQtdCoffees} />
-          <RemoveButton />
+          <Counter qtdCoffees={qtdCoffees} setQtdCoffees={handleAddToCard} />
+          <RemoveButton onClick={handleRemoveToCard} />
         </ContainerButtons>
       </Buy>
       <Price>

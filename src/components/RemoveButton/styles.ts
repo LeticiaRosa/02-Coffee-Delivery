@@ -1,7 +1,8 @@
 import styled from 'styled-components'
 
-export const ContainerRemoveButton = styled.div`
+export const ContainerRemoveButton = styled.button`
   display: flex;
+  cursor: pointer;
   align-items: center;
   justify-content: center;
   justify-items: center;
@@ -10,6 +11,7 @@ export const ContainerRemoveButton = styled.div`
   color: ${(props) => props.theme.color.brandPurple};
   background-color: ${(props) => props.theme.color.baseButton};
   border-radius: 10%;
+  border: none;
   :hover {
     color: ${(props) => props.theme.color.brandPurpleDark};
     cursor: pointer;

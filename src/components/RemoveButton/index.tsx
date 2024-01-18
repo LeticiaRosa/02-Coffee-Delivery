@@ -2,9 +2,9 @@ import { Trash } from 'phosphor-react'
 import { Label } from '../Label'
 import { ContainerRemoveButton } from './styles'
 
-export function RemoveButton() {
+export function RemoveButton({ ...rest }) {
   return (
-    <ContainerRemoveButton>
+    <ContainerRemoveButton {...rest}>
       <Trash size={16} weight="bold" />
       <Label
         color="baseSubtitle"
