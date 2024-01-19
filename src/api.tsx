@@ -24,6 +24,8 @@ interface Coffee {
   quantity: number
 }
 
+export const valueEntrega: number = 350
+
 export const coffees: Coffee[] = [
   {
     id: uuidv4(),

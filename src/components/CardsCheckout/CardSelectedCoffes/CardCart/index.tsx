@@ -8,9 +8,24 @@ import { Card } from './Card'
 import { Label } from '../../../Label'
 import { NavLink } from 'react-router-dom'
 import { useCart } from '../../../../Context/CartContext'
+import { coffees, valueEntrega } from '../../../../api'
 
 export function CardCart() {
   const { coffeeListType } = useCart()
+
+  function calculateSubtotal() {
+    return coffeeListType.reduce((accumulador, item) => {
+      const valor = coffees.find((i) => i.id === item.idCoffeeCart)?.price
+      if (valor) {
+        return accumulador + valor * item.qtdCoffeCart
+      }
+      return 0
+    }, 0)
+  }
+  function calculateTotal() {
+    return calculateSubtotal() + valueEntrega
+  }
+  console.log(calculateSubtotal())
   return (
     <ContainerMenu>
       <ContainerCoffees>
@@ -32,7 +47,15 @@ export function CardCart() {
             color="baseText"
           />
           <Label
-            text="R$ 29,70"
+            text={
+              'R$ ' +
+              (calculateSubtotal() / 100)
+                .toLocaleString('pt-BR', {
+                  minimumFractionDigits: 2,
+                  maximumFractionDigits: 2,
+                })
+                .toString()
+            }
             fonts="regular"
             size="text-regular-m"
             color="baseText"
@@ -46,7 +69,15 @@ export function CardCart() {
             color="baseText"
           />
           <Label
-            text="R$ 3,50"
+            text={
+              'R$ ' +
+              (valueEntrega / 100)
+                .toLocaleString('pt-BR', {
+                  minimumFractionDigits: 2,
+                  maximumFractionDigits: 2,
+                })
+                .toString()
+            }
             fonts="regular"
             size="text-regular-m"
             color="baseText"
@@ -62,7 +93,15 @@ export function CardCart() {
           />
 
           <Label
-            text="R$ 33,20"
+            text={
+              'R$ ' +
+              (calculateTotal() / 100)
+                .toLocaleString('pt-BR', {
+                  minimumFractionDigits: 2,
+                  maximumFractionDigits: 2,
+                })
+                .toString()
+            }
             fonts="regular"
             size="text-bold-l"
             weight="bold"
