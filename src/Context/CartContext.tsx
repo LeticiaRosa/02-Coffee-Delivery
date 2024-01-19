@@ -20,38 +20,43 @@ export function CartContextProvider({ children }: { children: ReactNode }) {
   }
 
   function addToCart(item: CoffeeListType) {
-    const foundIndex = returnIndex(item.idCoffeeCart)
-    let itemCart = {
-      idCoffeeCart: item.idCoffeeCart,
-      qtdCoffeCart: item.qtdCoffeCart,
-    }
-    if (foundIndex < 0) {
-      setCoffeeListType((prev) => [...prev, itemCart])
-    } else {
-      const foundQtd = coffeeListType.find(
-        (element) => element.idCoffeeCart === item.idCoffeeCart,
-      )
-      itemCart = {
-        idCoffeeCart: item.idCoffeeCart,
-        qtdCoffeCart:
-          item.qtdCoffeCart + (foundQtd ? foundQtd?.qtdCoffeCart : 0),
-      }
-      const arrayOld = coffeeListType
-      arrayOld.splice(foundIndex, 1, itemCart)
-      setCoffeeListType(arrayOld)
-    }
-  }
-  function updatedToCart(item: CoffeeListType) {
-    const foundIndex = returnIndex(item.idCoffeeCart)
-    if (foundIndex >= 0) {
-      const itemCart = {
+    setCoffeeListType((prevCoffeeListType) => {
+      const foundIndex = returnIndex(item.idCoffeeCart)
+      let itemCart = {
         idCoffeeCart: item.idCoffeeCart,
         qtdCoffeCart: item.qtdCoffeCart,
       }
-      const arrayOld = coffeeListType
-      arrayOld.splice(foundIndex, 1, itemCart)
-      setCoffeeListType(arrayOld)
-    }
+      if (foundIndex < 0) {
+        return [...prevCoffeeListType, itemCart]
+      } else {
+        const foundQtd = coffeeListType.find(
+          (element) => element.idCoffeeCart === item.idCoffeeCart,
+        )
+        itemCart = {
+          idCoffeeCart: item.idCoffeeCart,
+          qtdCoffeCart:
+            item.qtdCoffeCart + (foundQtd ? foundQtd.qtdCoffeCart : 0),
+        }
+        const arrayOld = [...prevCoffeeListType]
+        arrayOld.splice(foundIndex, 1, itemCart)
+        return arrayOld
+      }
+    })
+  }
+  function updatedToCart(item: CoffeeListType) {
+    setCoffeeListType((prevCoffeeListType) => {
+      const foundIndex = returnIndex(item.idCoffeeCart)
+      if (foundIndex >= 0) {
+        const itemCart = {
+          idCoffeeCart: item.idCoffeeCart,
+          qtdCoffeCart: item.qtdCoffeCart,
+        }
+        const arrayOld = [...prevCoffeeListType]
+        arrayOld.splice(foundIndex, 1, itemCart)
+        return arrayOld
+      }
+      return prevCoffeeListType
+    })
   }
 
   function removeToCart(id: string) {
@@ -63,10 +68,15 @@ export function CartContextProvider({ children }: { children: ReactNode }) {
       setCoffeeListType(arrayAtualizado)
     }
   }
-  console.log(coffeeListType)
+
   return (
     <CartContext.Provider
-      value={{ addToCart, updatedToCart, removeToCart, coffeeListType }}
+      value={{
+        addToCart,
+        updatedToCart,
+        removeToCart,
+        coffeeListType,
+      }}
     >
       {children}
     </CartContext.Provider>

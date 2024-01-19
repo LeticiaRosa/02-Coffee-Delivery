@@ -6,7 +6,8 @@ import { TagCoffee } from '../TagCoffee'
 import { Counter } from '../../components/Counter/index'
 import { useState } from 'react'
 import { useCart } from '../../Context/CartContext'
-
+import { toast } from 'react-toastify'
+import 'react-toastify/dist/ReactToastify.css'
 interface CoffeeProps {
   id: string
   tag: string[]
@@ -21,10 +22,27 @@ export function CoffeeCard({ id, tag, img, text, info, price }: CoffeeProps) {
   const [qtdCoffees, setQtdCoffees] = useState(1)
 
   function handleAddCart() {
-    addToCart({
-      idCoffeeCart: id,
-      qtdCoffeCart: qtdCoffees,
-    })
+    try {
+      addToCart({
+        idCoffeeCart: id,
+        qtdCoffeCart: qtdCoffees,
+      })
+      toast.success('Café adicionado no carrinho! ', {
+        position: 'top-center',
+        autoClose: 3000,
+        closeOnClick: true,
+        draggable: true,
+        theme: 'light',
+      })
+    } catch (error) {
+      toast.error('Ocorreu um erro: ' || error, {
+        position: 'top-center',
+        autoClose: 3000,
+        closeOnClick: true,
+        draggable: true,
+        theme: 'light',
+      })
+    }
     setQtdCoffees(1)
   }
   return (

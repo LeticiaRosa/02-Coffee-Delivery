@@ -8,11 +8,13 @@ import {
 import { ItemInfo } from '../../components/ItemInfo'
 import { Title } from '../../components/Title'
 import { CoffeeList } from '../../components/CoffeeList'
+import { ToastContainer } from 'react-toastify'
 
 export function Home() {
   return (
     <Container>
       <ContainerHome>
+        <ToastContainer />
         <ContainerIntro>
           <Title
             text="Encontre o café perfeito para qualquer hora do dia"
