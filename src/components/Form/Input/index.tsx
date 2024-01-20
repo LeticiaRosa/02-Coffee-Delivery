@@ -1,4 +1,4 @@
-import { forwardRef, InputHTMLAttributes } from 'react'
+import { forwardRef, InputHTMLAttributes, Ref } from 'react'
 import { Container } from './styles'
 import { useFormContext } from 'react-hook-form'
 import { Inputs } from '../../../pages/Checkout'
@@ -8,11 +8,14 @@ type InputProps = {
   optional?: string
 } & InputHTMLAttributes<HTMLInputElement>
 
-export const Input = forwardRef(function Input(props: InputProps) {
+export const Input = forwardRef(function Input(
+  { optional, name, ...rest }: InputProps,
+  ref: Ref<HTMLInputElement>,
+) {
   const { register } = useFormContext<Inputs>()
   return (
     <Container>
-      <input {...register(props.name)} {...props.rest} ref={ref} />
+      <input {...register(name)} {...rest} ref={ref} />
       <span>{optional}</span>
     </Container>
   )
