@@ -1,12 +1,6 @@
-import {
-  ContainerButton,
-  ContainerInfos,
-  ContainerMenu,
-  ContainerCoffees,
-} from './styles'
+import { ContainerInfos, ContainerMenu, ContainerCoffees } from './styles'
 import { Card } from './Card'
 import { Label } from '../../../Label'
-import { NavLink } from 'react-router-dom'
 import { useCart } from '../../../../Context/CartContext'
 import { coffees, valueEntrega } from '../../../../api'
 
@@ -25,7 +19,6 @@ export function CardCart() {
   function calculateTotal() {
     return calculateSubtotal() + valueEntrega
   }
-  console.log(calculateSubtotal())
   return (
     <ContainerMenu>
       <ContainerCoffees>
@@ -109,19 +102,6 @@ export function CardCart() {
           />
         </div>
       </ContainerInfos>
-      <ContainerButton>
-        <NavLink to="/Success" title="Success">
-          <button>
-            <Label
-              text="CONFIRMAR PEDIDO"
-              fonts="regular"
-              color="baseWhite"
-              size="components-button-g"
-              weight="bold"
-            />
-          </button>
-        </NavLink>
-      </ContainerButton>
     </ContainerMenu>
   )
 }

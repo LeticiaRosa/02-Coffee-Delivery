@@ -103,3 +103,16 @@ export const ContainerCart = styled.div`
     padding: 1rem;
   }
 `
+
+export const ContainerButton = styled.div`
+  padding: 1rem 0;
+  button {
+    padding: 1rem;
+    width: 100%;
+    color: ${(props) => props.theme.color.baseWhite};
+    background-color: ${(props) => props.theme.color.brandYellow};
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+  }
+`

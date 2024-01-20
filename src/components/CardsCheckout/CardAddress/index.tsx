@@ -2,8 +2,12 @@ import { MapPinLine } from 'phosphor-react'
 import { Input } from '../../Form/Input'
 import { Label } from '../../Label/index'
 import { ContainerAdress, ContainerInputs, HeaderForm } from './styles'
+import { useFormContext } from 'react-hook-form'
+import { Inputs } from '../../../pages/Checkout'
 
 export function CardAddress() {
+  const { register } = useFormContext<Inputs>()
+
   return (
     <ContainerAdress>
       <HeaderForm>
@@ -23,17 +27,36 @@ export function CardAddress() {
           />
         </div>
       </HeaderForm>
-      <form action="">
-        <ContainerInputs>
-          <Input placeholder="CEP" />
-          <Input placeholder="Rua" optional="Opcional" />
-          <Input placeholder="Número" />
-          <Input placeholder="Complemento" />
-          <Input placeholder="Bairro" />
-          <Input placeholder="Cidade" />
-          <Input placeholder="UF" />
-        </ContainerInputs>
-      </form>
+      <ContainerInputs>
+        <Input type="text" id="CEP" placeholder="CEP" {...register('CEP')} />
+        <Input type="text" id="road" placeholder="Rua" {...register('road')} />
+        <Input
+          type="number"
+          id="number"
+          placeholder="Número"
+          {...register('number')}
+        />
+        <Input
+          type="text"
+          id="complement"
+          placeholder="Complemento"
+          optional="Opcional"
+          {...register('complement')}
+        />
+        <Input
+          type="text"
+          id="neighborhood"
+          placeholder="Bairro"
+          {...register('neighborhood')}
+        />
+        <Input
+          type="text"
+          id="city"
+          placeholder="Cidade"
+          {...register('city')}
+        />
+        <Input type="text" id="UF" placeholder="UF" {...register('UF')} />
+      </ContainerInputs>
     </ContainerAdress>
   )
 }
