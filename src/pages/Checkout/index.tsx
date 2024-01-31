@@ -30,9 +30,9 @@ export function Checkout() {
   }
   return (
     <Container>
-      <ContainerAddress>
-        <FormProvider {...methods}>
-          <form onSubmit={methods.handleSubmit(onSubmit)}>
+      <FormProvider {...methods}>
+        <form onSubmit={methods.handleSubmit(onSubmit)}>
+          <ContainerAddress>
             <ContainerMenu>
               <div>
                 <Title
@@ -70,9 +70,9 @@ export function Checkout() {
                 </ContainerButton>
               </ContainerCart>
             </ContainerMenu>
-          </form>
-        </FormProvider>
-      </ContainerAddress>
+          </ContainerAddress>
+        </form>
+      </FormProvider>
     </Container>
   )
 }
