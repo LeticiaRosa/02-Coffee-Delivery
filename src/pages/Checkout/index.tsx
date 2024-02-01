@@ -12,7 +12,8 @@ import { CardFormOfPayment } from '../../components/CardsCheckout/CardPaymentFor
 // import { NavLink } from 'react-router-dom'
 import { Label } from '../../components/Label'
 import { FormProvider, SubmitHandler, useForm } from 'react-hook-form'
-
+import { zodResolver } from '@hookform/resolvers/zod'
+import * as zod from 'zod'
 export type Inputs = {
   CEP: string
   road: string
@@ -23,11 +24,27 @@ export type Inputs = {
   UF: string
 }
 
+const checkoutFormValidationSchema = zod.object({
+  CEP: zod
+    .string()
+    .min(8, 'Informe um CEP válido! ')
+    .max(8, 'Informe um CEP válido.'),
+  road: zod.string().toUpperCase().min(1, 'Informe a rua'),
+  number: zod.string().min(1, 'Informe o número'),
+  complement: zod.string().toUpperCase(),
+  neighborhood: zod.string().toUpperCase().min(1, 'Informe o bairro'),
+  city: zod.string().toUpperCase().min(1, 'Informe a cidade'),
+  UF: zod.string().min(2, 'Informe o UF').max(2, 'Informe um UF válido'),
+})
+
 export function Checkout() {
-  const methods = useForm<Inputs>()
+  const methods = useForm<Inputs>({
+    resolver: zodResolver(checkoutFormValidationSchema),
+  })
   const onSubmit: SubmitHandler<Inputs> = (data) => {
     console.log(data)
   }
+
   return (
     <Container>
       <FormProvider {...methods}>

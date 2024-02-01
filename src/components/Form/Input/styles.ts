@@ -1,7 +1,6 @@
 import { styled } from 'styled-components'
 
-export const Container = styled.div`
-  padding-bottom: 1rem;
+export const Container = styled.div<{ $error: boolean }>`
   display: flex;
   align-items: center;
   justify-items: center;
@@ -11,7 +10,8 @@ export const Container = styled.div`
     height: 42px;
     padding: 0.75rem;
     background-color: ${(props) => props.theme.color.baseInput};
-    border: solid 1px ${(props) => props.theme.color.baseButton};
+    border: solid 1px;
+    border-color: ${(props) => props.$error && '#fff'};
     border-radius: 5px;
     color: ${(props) => props.theme.color.baseLabel};
   }

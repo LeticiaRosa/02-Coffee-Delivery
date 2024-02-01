@@ -1,6 +1,6 @@
 import { Container } from './styles'
 import { CoffeeCard } from '../CoffeeCard'
-import { coffees } from '../../api.tsx'
+import { coffees } from '../../apis/apiCoffes'
 
 export function CoffeeList() {
   return (

@@ -2,7 +2,7 @@ import { ContainerInfos, ContainerMenu, ContainerCoffees } from './styles'
 import { Card } from './Card'
 import { Label } from '../../../Label'
 import { useCart } from '../../../../Context/CartContext'
-import { coffees, valueEntrega } from '../../../../api'
+import { coffees, valueEntrega } from '../../../../apis/apiCoffes'
 
 export function CardCart() {
   const { coffeeListType } = useCart()

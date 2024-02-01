@@ -71,6 +71,15 @@ export const ContainerInputs = styled.div`
     grid-row: 4; /* Quarta linha */
     grid-column: 6; /* Ocupa 10% */
   }
+  div {
+    padding-bottom: 0.3rem;
+    h6 {
+      height: 14px;
+      font-weight: 100;
+      font-size: 0.7rem;
+      color: red;
+    }
+  }
 `
 
 export const ContainerCart = styled.div`
