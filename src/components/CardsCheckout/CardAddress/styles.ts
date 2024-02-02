@@ -73,12 +73,7 @@ export const ContainerInputs = styled.div`
   }
   div {
     padding-bottom: 0.3rem;
-    h6 {
-      height: 14px;
-      font-weight: 100;
-      font-size: 0.7rem;
-      color: red;
-    }
+    display: inline;
   }
 `
 

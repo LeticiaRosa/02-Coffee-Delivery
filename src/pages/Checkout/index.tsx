@@ -27,8 +27,8 @@ export type Inputs = {
 const checkoutFormValidationSchema = zod.object({
   CEP: zod
     .string()
-    .min(8, 'Informe um CEP válido! ')
-    .max(8, 'Informe um CEP válido.'),
+    .min(9, 'Informe um CEP válido!')
+    .max(9, 'Informe um CEP válido.'),
   road: zod.string().toUpperCase().min(1, 'Informe a rua'),
   number: zod.string().min(1, 'Informe o número'),
   complement: zod.string().toUpperCase(),

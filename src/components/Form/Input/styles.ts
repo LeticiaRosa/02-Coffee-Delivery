@@ -5,16 +5,19 @@ export const Container = styled.div<{ $error: boolean }>`
   align-items: center;
   justify-items: center;
   width: 100%;
+  position: relative;
   input {
     width: 100%;
     height: 42px;
     padding: 0.75rem;
     background-color: ${(props) => props.theme.color.baseInput};
-    border: solid 1px;
-    border-color: ${(props) => props.$error && '#fff'};
+    border: solid 1px
+      ${(props) =>
+        props.$error ? props.theme.color.red : props.theme.color.baseInput};
     border-radius: 5px;
     color: ${(props) => props.theme.color.baseLabel};
   }
+
   input:hover {
     border: solid 1px ${(props) => props.theme.color.brandYellowDark};
     transition: border 0.5s;
@@ -39,10 +42,17 @@ export const Container = styled.div<{ $error: boolean }>`
     transition: opacity 0.3s;
   }
   span {
-    position: relative;
-    left: -60px;
+    position: absolute;
+    top: 25%;
+    right: 10px;
+    transform: translateY(-50%);
+    color: gray;
     font-size: 12px;
-    font-style: italic;
-    width: 0;
+  }
+  h6 {
+    height: 14px;
+    font-weight: 100;
+    font-size: 0.7rem;
+    color: red;
   }
 `

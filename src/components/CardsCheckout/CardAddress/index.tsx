@@ -2,11 +2,8 @@ import { MapPinLine } from 'phosphor-react'
 import { Input } from '../../Form/Input'
 import { Label } from '../../Label/index'
 import { ContainerAdress, ContainerInputs, HeaderForm } from './styles'
-import { useFormContext } from 'react-hook-form'
-import { Inputs } from '../../../pages/Checkout'
 
 export function CardAddress() {
-  const { register, formState } = useFormContext<Inputs>()
   return (
     <ContainerAdress>
       <HeaderForm>
@@ -31,32 +28,16 @@ export function CardAddress() {
           <Input
             type="text"
             id="CEP"
-            min={11}
             placeholder="CEP"
-            {...register('CEP')}
-            isError={!!formState.errors.CEP}
+            name="CEP"
+            maxCaracters={9}
           />
-          <h6>{formState.errors.CEP?.message}</h6>
-        </div>
-        {/* <div>
-          <Input
-            type="text"
-            id="road"
-            placeholder="Rua"
-            {...register('road')}
-            isError={!!formState.errors.road}
-          />
-          <h6>{formState.errors.road?.message}</h6>
         </div>
         <div>
-          <Input
-            type="number"
-            id="number"
-            placeholder="Número"
-            {...register('number')}
-            isError={!!formState.errors.number}
-          />
-          <h6>{formState.errors.number?.message}</h6>
+          <Input type="text" id="road" placeholder="Rua" name="road" />
+        </div>
+        <div>
+          <Input type="number" id="number" placeholder="Número" name="number" />
         </div>
         <div>
           <Input
@@ -64,42 +45,29 @@ export function CardAddress() {
             id="complement"
             placeholder="Complemento"
             optional="Opcional"
-            {...register('complement')}
-            isError={!!formState.errors.complement}
+            name="complement"
           />
-          <h6>{formState.errors.complement?.message}</h6>
         </div>
         <div>
           <Input
             type="text"
             id="neighborhood"
             placeholder="Bairro"
-            {...register('neighborhood')}
-            isError={!!formState.errors.neighborhood}
+            name="neighborhood"
           />
-          <h6>{formState.errors.neighborhood?.message}</h6>
         </div>
         <div>
-          <Input
-            type="text"
-            id="city"
-            placeholder="Cidade"
-            {...register('city')}
-            isError={!!formState.errors.city}
-          />
-          <h6>{formState.errors.city?.message}</h6>
+          <Input type="text" id="city" placeholder="Cidade" name="city" />
         </div>
         <div>
           <Input
             type="text"
             id="UF"
             placeholder="UF"
-            {...register('UF')}
-            isError={!!formState.errors.UF}
+            name="UF"
+            maxCaracters={2}
           />
-
-          <h6>{formState.errors.UF?.message}</h6>
-        </div> */}
+        </div>
       </ContainerInputs>
     </ContainerAdress>
   )
