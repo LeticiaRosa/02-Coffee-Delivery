@@ -42,6 +42,8 @@ export function Checkout() {
     resolver: zodResolver(checkoutFormValidationSchema),
   })
   const onSubmit: SubmitHandler<Inputs> = (data) => {
+    if (methods.formState.errors)
+      return console.log('Erro', methods.formState.errors)
     console.log(data)
   }
 

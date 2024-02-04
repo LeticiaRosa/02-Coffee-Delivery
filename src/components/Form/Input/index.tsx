@@ -29,30 +29,45 @@ export function Input({
     clearErrors,
   } = useFormContext<Inputs>()
 
-  useEffect(() => {
-    if (!getValues('CEP')) return
+  function ValidatedCEP(cep: string) {
+    if (!cep) return
 
-    if (getValues('CEP').replace('-', '').length > 9) {
+    if (cep.replace('-', '').length > 9) {
       setError('CEP', {
         type: 'maxLength',
         message: 'Informe um CEP com 8 digitos',
       })
       return
     }
-    clearErrors('CEP')
-    clearErrors('road')
-    clearErrors('neighborhood')
-    clearErrors('city')
-    clearErrors('UF')
-    if (getValues('CEP').replace('-', '').length === 8) {
-      apiViaCep(getValues('CEP').replace('-', '')).then((response) => {
+    if (cep.replace('-', '').length === 8) {
+      apiViaCep(cep.replace('-', '')).then((response) => {
+        if (response.erro) {
+          setValue('road', '')
+          setValue('neighborhood', '')
+          setValue('city', '')
+          setValue('UF', '')
+          setError('CEP', {
+            message: 'O CEP informado não existe!',
+          })
+          return
+        }
+        clearErrors('CEP')
+        clearErrors('road')
+        clearErrors('neighborhood')
+        clearErrors('city')
+        clearErrors('UF')
+        clearErrors('number')
         setValue('road', response.logradouro)
         setValue('neighborhood', response.bairro)
         setValue('city', response.localidade)
         setValue('UF', response.uf)
       })
     }
-    setValue('CEP', getValues('CEP').replace(/(\d{5})(\d{3})/, '$1-$2'))
+    setValue('CEP', cep.replace(/(\d{5})(\d{3})/, '$1-$2'))
+  }
+
+  useEffect(() => {
+    ValidatedCEP(getValues('CEP'))
   }, [watch('CEP')])
   return (
     <Container $error={isError}>
