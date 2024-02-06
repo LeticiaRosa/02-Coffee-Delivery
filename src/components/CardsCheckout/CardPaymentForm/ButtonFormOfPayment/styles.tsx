@@ -1,6 +1,6 @@
 import { styled } from 'styled-components'
 
-export const ContainerButton = styled.div`
+export const ContainerButton = styled.div<{ method: string }>`
   display: flex;
   align-items: center;
   justify-content: center;
@@ -24,4 +24,10 @@ export const ContainerButton = styled.div`
     background-color: ${(props) => props.theme.color.brandPurpleLight};
     border: solid 1px ${(props) => props.theme.color.brandPurple};
   }
+  ${(props) =>
+    `button#${props.method}{
+    background-color: ${props.theme.color.brandPurpleLight};
+    border: solid 1px ${props.theme.color.brandPurple}; 
+    }
+  `}
 `

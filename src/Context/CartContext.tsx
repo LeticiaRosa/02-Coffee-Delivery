@@ -3,17 +3,32 @@ type CoffeeListType = {
   idCoffeeCart: string
   qtdCoffeCart: number
 }
+export type AddressOrder = {
+  CEP: string
+  road: string
+  number: number
+  complement: string
+  neighborhood: string
+  city: string
+  UF: string
+}
 
 interface CartContextType {
+  methodPayment: string
+  addressOrder: AddressOrder[]
   coffeeListType: CoffeeListType[]
   addToCart: (item: CoffeeListType) => void
   removeToCart: (id: string) => void
   updatedToCart: (id: CoffeeListType) => void
+  updatedMethodPayment: (MethodPayment: string) => void
+  completeOrder: (address: AddressOrder) => void
 }
 const CartContext = createContext<CartContextType>({} as CartContextType)
 
 export function CartContextProvider({ children }: { children: ReactNode }) {
   const [coffeeListType, setCoffeeListType] = useState<CoffeeListType[]>([])
+  const [methodPayment, setMethodPayment] = useState<string>('')
+  const [addressOrder, setAddressOrder] = useState<AddressOrder[]>([])
 
   function returnIndex(id: string) {
     return coffeeListType.findIndex((element) => element.idCoffeeCart === id)
@@ -69,6 +84,13 @@ export function CartContextProvider({ children }: { children: ReactNode }) {
     }
   }
 
+  function updatedMethodPayment(MethodPayment: string) {
+    setMethodPayment(MethodPayment)
+  }
+  function completeOrder(address: AddressOrder) {
+    setAddressOrder([address])
+  }
+
   return (
     <CartContext.Provider
       value={{
@@ -76,6 +98,10 @@ export function CartContextProvider({ children }: { children: ReactNode }) {
         updatedToCart,
         removeToCart,
         coffeeListType,
+        updatedMethodPayment,
+        methodPayment,
+        addressOrder,
+        completeOrder,
       }}
     >
       {children}

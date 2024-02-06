@@ -1,6 +1,7 @@
 import { Bank, CreditCard, Money } from 'phosphor-react'
 import { Label } from '../../../Label'
 import { ContainerButton } from './styles'
+import { useCart } from '../../../../Context/CartContext'
 
 type PropsButtonFormOfPayment = {
   form: string
@@ -8,6 +9,7 @@ type PropsButtonFormOfPayment = {
 }
 
 export function ButtonFormOfPayment({ form, type }: PropsButtonFormOfPayment) {
+  const { updatedMethodPayment, methodPayment } = useCart()
   let iconComponent
   switch (type) {
     case 'Credit':
@@ -23,10 +25,17 @@ export function ButtonFormOfPayment({ form, type }: PropsButtonFormOfPayment) {
       iconComponent = null
       break
   }
-
+  function handleSetTypeOfPayment(form: string) {
+    updatedMethodPayment(form)
+  }
   return (
-    <ContainerButton>
-      <button>
+    <ContainerButton method={methodPayment}>
+      <button
+        name={form}
+        id={form} // ajustar
+        type="button"
+        onClick={() => handleSetTypeOfPayment(form)}
+      >
         {iconComponent}
         <Label
           text={form}

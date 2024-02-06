@@ -14,15 +14,7 @@ import { Label } from '../../components/Label'
 import { FormProvider, SubmitHandler, useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 import * as zod from 'zod'
-export type Inputs = {
-  CEP: string
-  road: string
-  number: number
-  complement: string
-  neighborhood: string
-  city: string
-  UF: string
-}
+import { AddressOrder, useCart } from '../../Context/CartContext'
 
 const checkoutFormValidationSchema = zod.object({
   CEP: zod
@@ -34,19 +26,20 @@ const checkoutFormValidationSchema = zod.object({
   complement: zod.string().toUpperCase(),
   neighborhood: zod.string().toUpperCase().min(1, 'Informe o bairro'),
   city: zod.string().toUpperCase().min(1, 'Informe a cidade'),
-  UF: zod.string().min(2, 'Informe o UF').max(2, 'Informe um UF válido'),
+  UF: zod.string().min(2, 'Informe o UF'),
 })
 
 export function Checkout() {
-  const methods = useForm<Inputs>({
+  const { completeOrder, addressOrder, methodPayment } = useCart()
+  const methods = useForm<AddressOrder>({
     resolver: zodResolver(checkoutFormValidationSchema),
   })
-  const onSubmit: SubmitHandler<Inputs> = (data) => {
-    if (methods.formState.errors)
-      return console.log('Erro', methods.formState.errors)
-    console.log(data)
-  }
 
+  const onSubmit: SubmitHandler<AddressOrder> = (data) => {
+    completeOrder(data)
+  }
+  console.log(addressOrder)
+  console.log(methodPayment)
   return (
     <Container>
       <FormProvider {...methods}>
@@ -76,7 +69,7 @@ export function Checkout() {
                 <CardCart />
                 <ContainerButton>
                   {/* <NavLink to="/Success" title="Success"> */}
-                  <button type="submit">
+                  <button type="submit" disabled={!methods.formState.isValid}>
                     <Label
                       text="CONFIRMAR PEDIDO"
                       fonts="regular"
