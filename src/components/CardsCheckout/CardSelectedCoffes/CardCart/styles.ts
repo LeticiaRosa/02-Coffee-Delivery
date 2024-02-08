@@ -38,3 +38,7 @@ export const ContainerInfos = styled.div`
     justify-content: space-between;
   }
 `
+
+export const ContainerAlert = styled.div`
+  padding-top: 2rem;
+`

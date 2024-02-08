@@ -9,7 +9,7 @@ import {
 import { CardAddress } from '../../components/CardsCheckout/CardAddress'
 import { CardCart } from '../../components/CardsCheckout/CardSelectedCoffes/CardCart'
 import { CardFormOfPayment } from '../../components/CardsCheckout/CardPaymentForm'
-// import { NavLink } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 import { Label } from '../../components/Label'
 import { FormProvider, SubmitHandler, useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
@@ -30,16 +30,17 @@ const checkoutFormValidationSchema = zod.object({
 })
 
 export function Checkout() {
-  const { completeOrder, addressOrder, methodPayment } = useCart()
+  const { completeOrder, addressOrder } = useCart()
   const methods = useForm<AddressOrder>({
     resolver: zodResolver(checkoutFormValidationSchema),
   })
-
+  const navigate = useNavigate()
   const onSubmit: SubmitHandler<AddressOrder> = (data) => {
     completeOrder(data)
+    console.log(addressOrder)
+    navigate('/Success')
   }
-  console.log(addressOrder)
-  console.log(methodPayment)
+
   return (
     <Container>
       <FormProvider {...methods}>
@@ -68,7 +69,6 @@ export function Checkout() {
               <ContainerCart>
                 <CardCart />
                 <ContainerButton>
-                  {/* <NavLink to="/Success" title="Success"> */}
                   <button type="submit" disabled={!methods.formState.isValid}>
                     <Label
                       text="CONFIRMAR PEDIDO"
@@ -78,7 +78,6 @@ export function Checkout() {
                       weight="bold"
                     />
                   </button>
-                  {/* </NavLink> */}
                 </ContainerButton>
               </ContainerCart>
             </ContainerMenu>

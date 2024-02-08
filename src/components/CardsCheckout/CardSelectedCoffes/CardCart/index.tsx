@@ -1,4 +1,9 @@
-import { ContainerInfos, ContainerMenu, ContainerCoffees } from './styles'
+import {
+  ContainerInfos,
+  ContainerMenu,
+  ContainerCoffees,
+  ContainerAlert,
+} from './styles'
 import { Card } from './Card'
 import { Label } from '../../../Label'
 import { useCart } from '../../../../Context/CartContext'
@@ -22,13 +27,24 @@ export function CardCart() {
   return (
     <ContainerMenu>
       <ContainerCoffees>
-        {coffeeListType.map((i) => {
-          return (
-            <div key={i.idCoffeeCart}>
-              <Card id={i.idCoffeeCart} qtd={i.qtdCoffeCart} />
-            </div>
-          )
-        })}
+        {coffeeListType.length > 0 ? (
+          coffeeListType.map((i) => {
+            return (
+              <div key={i.idCoffeeCart}>
+                <Card id={i.idCoffeeCart} qtd={i.qtdCoffeCart} />
+              </div>
+            )
+          })
+        ) : (
+          <ContainerAlert>
+            <Label
+              text="Ops, seu carrinho está vazio!"
+              fonts="regular"
+              size="text-regular-s"
+              color="red"
+            />
+          </ContainerAlert>
+        )}
       </ContainerCoffees>
 
       <ContainerInfos>

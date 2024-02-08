@@ -10,6 +10,7 @@ export interface LabelProps extends TextProps {
   | 'baseText'
   | 'baseSubtitle'
   | 'brandPurple'
+  | 'red'
   weight?: 'bold' | 'normal'
 }
 

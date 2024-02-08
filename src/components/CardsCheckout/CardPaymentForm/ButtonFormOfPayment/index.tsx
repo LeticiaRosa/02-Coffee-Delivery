@@ -31,10 +31,10 @@ export function ButtonFormOfPayment({ form, type }: PropsButtonFormOfPayment) {
   return (
     <ContainerButton method={methodPayment}>
       <button
-        name={form}
-        id={form} // ajustar
+        name={type}
+        id={type} // ajustar
         type="button"
-        onClick={() => handleSetTypeOfPayment(form)}
+        onClick={() => handleSetTypeOfPayment(type)}
       >
         {iconComponent}
         <Label
