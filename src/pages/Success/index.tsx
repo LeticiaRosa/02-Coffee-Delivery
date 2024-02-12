@@ -2,8 +2,14 @@ import { useCart } from '../../Context/CartContext'
 import { Icon } from '../../components/ItemInfo/Icon/Icon'
 import { Label } from '../../components/Label'
 import { Title } from '../../components/Title'
-import { BorderLine, BorderRadios, Container, ContainerIcon } from './styles'
-
+import {
+  BorderLine,
+  BorderRadios,
+  Container,
+  ContainerElements,
+  ContainerIcon,
+} from './styles'
+import Illustration from '../../assets/Illustration.png'
 export function Success() {
   const { addressOrder, methodPayment } = useCart()
 
@@ -28,42 +34,44 @@ export function Success() {
         text="Agora é só aguardar que logo o café chegará até você"
         color="baseSubtitle"
       />
-
-      <BorderLine>
-        <BorderRadios>
-          <div>
-            <ContainerIcon>
-              <Icon type="Map" color="brandPurple" />
-              <div>
-                <p>
-                  Entrega em{' '}
-                  <strong>
-                    {addressOrder[0].road}, {addressOrder[0].number}
-                  </strong>
-                </p>
-                <p>
-                  {addressOrder[0].neighborhood} - {addressOrder[0].city} ,{' '}
-                  {addressOrder[0].UF}
-                </p>
-              </div>
-            </ContainerIcon>
-            <ContainerIcon>
-              <Icon type="Timer" color="brandYellow" />
-              <div>
-                <span>Previsão de entrega</span>
-                <strong>20 min - 30 min</strong>
-              </div>
-            </ContainerIcon>
-            <ContainerIcon>
-              <Icon type="Dollar" color="brandYellowDark" />
-              <div>
-                <span>Pagamento na entrega</span>
-                <strong>{returnDescriptionMethodPayment()}</strong>
-              </div>
-            </ContainerIcon>
-          </div>
-        </BorderRadios>
-      </BorderLine>
+      <ContainerElements>
+        <BorderLine>
+          <BorderRadios>
+            <div>
+              <ContainerIcon>
+                <Icon type="Map" color="brandPurple" />
+                <div>
+                  <p>
+                    Entrega em{' '}
+                    <strong>
+                      {addressOrder[0].road}, {addressOrder[0].number}
+                    </strong>
+                  </p>
+                  <p>
+                    {addressOrder[0].neighborhood} - {addressOrder[0].city} ,{' '}
+                    {addressOrder[0].UF}
+                  </p>
+                </div>
+              </ContainerIcon>
+              <ContainerIcon>
+                <Icon type="Timer" color="brandYellow" />
+                <div>
+                  <span>Previsão de entrega</span>
+                  <strong>20 min - 30 min</strong>
+                </div>
+              </ContainerIcon>
+              <ContainerIcon>
+                <Icon type="Dollar" color="brandYellowDark" />
+                <div>
+                  <span>Pagamento na entrega</span>
+                  <strong>{returnDescriptionMethodPayment()}</strong>
+                </div>
+              </ContainerIcon>
+            </div>
+          </BorderRadios>
+        </BorderLine>
+        <img src={Illustration} alt="" />
+      </ContainerElements>
     </Container>
   )
 }

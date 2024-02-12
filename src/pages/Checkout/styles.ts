@@ -115,4 +115,35 @@ export const ContainerButton = styled.div`
     border-radius: 10px;
     cursor: pointer;
   }
+  button:disabled {
+    cursor: initial;
+  }
+  button:hover + div {
+    display: flex;
+  }
+`
+
+export const MsgHelp = styled.div`
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  top: 10px;
+  p {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 0.25rem;
+    padding: 0.5rem;
+    font-size: 14px;
+    font-weight: 700;
+    position: absolute;
+    background-color: white;
+    border: 1px solid red;
+    border-radius: 10px;
+    top: -60px;
+    right: 50px;
+  }
 `

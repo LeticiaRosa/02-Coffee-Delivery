@@ -5,6 +5,7 @@ import {
   ContainerButton,
   ContainerCart,
   ContainerMenu,
+  MsgHelp,
 } from './styles'
 import { CardAddress } from '../../components/CardsCheckout/CardAddress'
 import { CardCart } from '../../components/CardsCheckout/CardSelectedCoffes/CardCart'
@@ -15,6 +16,7 @@ import { FormProvider, SubmitHandler, useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 import * as zod from 'zod'
 import { AddressOrder, useCart } from '../../Context/CartContext'
+import { Warning } from 'phosphor-react'
 
 const checkoutFormValidationSchema = zod.object({
   CEP: zod
@@ -30,7 +32,8 @@ const checkoutFormValidationSchema = zod.object({
 })
 
 export function Checkout() {
-  const { completeOrder, addressOrder } = useCart()
+  const { completeOrder, addressOrder, coffeeListType, methodPayment } =
+    useCart()
   const methods = useForm<AddressOrder>({
     resolver: zodResolver(checkoutFormValidationSchema),
   })
@@ -40,7 +43,13 @@ export function Checkout() {
     console.log(addressOrder)
     navigate('/Success')
   }
-
+  function returnMSG(msg: string) {
+    return (
+      <p>
+        <Warning size={18} color="red" /> {msg}
+      </p>
+    )
+  }
   return (
     <Container>
       <FormProvider {...methods}>
@@ -69,7 +78,10 @@ export function Checkout() {
               <ContainerCart>
                 <CardCart />
                 <ContainerButton>
-                  <button type="submit" disabled={!methods.formState.isValid}>
+                  <button
+                    type="submit"
+                    disabled={!methods.formState.isValid || !coffeeListType}
+                  >
                     <Label
                       text="CONFIRMAR PEDIDO"
                       fonts="regular"
@@ -78,6 +90,15 @@ export function Checkout() {
                       weight="bold"
                     />
                   </button>
+                  <MsgHelp>
+                    {!coffeeListType.length
+                      ? returnMSG('Adicione itens no carrinho!')
+                      : !methods.formState.isValid
+                        ? returnMSG('Preencha os dados do endereço!')
+                        : !methodPayment
+                          ? returnMSG('Selecione a forma de pagamento!')
+                          : ''}
+                  </MsgHelp>
                 </ContainerButton>
               </ContainerCart>
             </ContainerMenu>

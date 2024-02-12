@@ -26,20 +26,37 @@ export const ContainerIcon = styled.div`
   padding: 1rem;
 `
 export const BorderLine = styled.div`
-  width: 70%;
+  width: 50%;
   background: linear-gradient(
     135deg,
     ${(props) => props.theme.color.brandYellow},
     ${(props) => props.theme.color.brandPurple}
   );
-  padding: 1px;
+  padding: 2px;
   border-radius: 5px 25px;
+  @media screen and (max-width: 900px) {
+    width: 100%;
+  }
 `
 export const BorderRadios = styled.div`
   background: white;
-  padding: 1px;
+  padding: 2px;
   border-radius: 5px 25px;
   > div {
-    padding: 2rem;
+    padding: 3rem;
+  }
+`
+
+export const ContainerElements = styled.div`
+  display: flex;
+  gap: 2rem;
+  img {
+    height: auto;
+    object-fit: cover;
+  }
+  @media screen and (max-width: 900px) {
+    img {
+      display: none;
+    }
   }
 `
