@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 import { Title } from '../../components/Title'
 import {
   Container,
@@ -32,15 +33,14 @@ const checkoutFormValidationSchema = zod.object({
 })
 
 export function Checkout() {
-  const { completeOrder, addressOrder, coffeeListType, methodPayment } =
-    useCart()
+  const { completeOrder, coffeeListType, methodPayment } = useCart()
   const methods = useForm<AddressOrder>({
     resolver: zodResolver(checkoutFormValidationSchema),
   })
+  console.log(methodPayment)
   const navigate = useNavigate()
   const onSubmit: SubmitHandler<AddressOrder> = (data) => {
     completeOrder(data)
-    console.log(addressOrder)
     navigate('/Success')
   }
   function returnMSG(msg: string) {

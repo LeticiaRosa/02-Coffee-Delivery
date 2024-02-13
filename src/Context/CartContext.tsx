@@ -1,4 +1,10 @@
-import { ReactNode, createContext, useContext, useState } from 'react'
+import {
+  ReactNode,
+  createContext,
+  useContext,
+  useEffect,
+  useState,
+} from 'react'
 type CoffeeListType = {
   idCoffeeCart: string
   qtdCoffeCart: number
@@ -23,11 +29,17 @@ interface CartContextType {
   updatedMethodPayment: (MethodPayment: string) => void
   completeOrder: (address: AddressOrder) => void
 }
+
+const storedStateasJSON = localStorage.getItem(
+  '@coffee-delivery:coffeeListType-1.0.0',
+)
 const CartContext = createContext<CartContextType>({} as CartContextType)
 
 export function CartContextProvider({ children }: { children: ReactNode }) {
-  const [coffeeListType, setCoffeeListType] = useState<CoffeeListType[]>([])
-  const [methodPayment, setMethodPayment] = useState<string>('')
+  const [coffeeListType, setCoffeeListType] = useState<CoffeeListType[]>(
+    storedStateasJSON ? JSON.parse(storedStateasJSON) : [],
+  )
+  const [methodPayment, setMethodPayment] = useState<string>('Credit')
   const [addressOrder, setAddressOrder] = useState<AddressOrder[]>([])
 
   function returnIndex(id: string) {
@@ -90,6 +102,19 @@ export function CartContextProvider({ children }: { children: ReactNode }) {
   function completeOrder(address: AddressOrder) {
     setAddressOrder([address])
   }
+
+  useEffect(() => {
+    const stateItensJSON = JSON.stringify(coffeeListType)
+    localStorage.setItem(
+      '@coffee-delivery:coffeeListType-1.0.0',
+      stateItensJSON,
+    )
+    const stateMethodJSON = JSON.stringify(methodPayment)
+    localStorage.setItem(
+      '@coffee-delivery:methodPayment-1.0.0',
+      stateMethodJSON,
+    )
+  }, [coffeeListType, methodPayment])
 
   return (
     <CartContext.Provider

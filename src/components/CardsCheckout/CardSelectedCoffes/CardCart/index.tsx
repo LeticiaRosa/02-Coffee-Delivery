@@ -11,7 +11,7 @@ import { coffees, valueEntrega } from '../../../../apis/apiCoffes'
 
 export function CardCart() {
   const { coffeeListType } = useCart()
-
+  console.log(coffeeListType)
   function calculateSubtotal() {
     return coffeeListType.reduce((accumulador, item) => {
       const valor = coffees.find((i) => i.id === item.idCoffeeCart)?.price
